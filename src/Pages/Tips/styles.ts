@@ -22,7 +22,7 @@ export const Header = styled.View`
 
 export const TitlePage = styled.Text`
   color: #FF429C;
-  font-size: ${RFValue(24)}px;
+  font-size: ${RFValue(22)}px;
   font-family: Poppins_700Bold;
 `
 

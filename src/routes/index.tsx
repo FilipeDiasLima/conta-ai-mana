@@ -7,6 +7,7 @@ import ISTS from '../Pages/ISTS';
 import OpenVideo from '../Pages/OpenVideo';
 import Tips from '../Pages/Tips';
 import OpenTip from '../Pages/OpenTip';
+import Vaccine from '../Pages/Vaccine';
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
@@ -17,6 +18,7 @@ export default function AppStack() {
         <Screen name='Home' component={Home} />
         <Screen name='ISTS' component={ISTS} />
         <Screen name='Tips' component={Tips} />
+        <Screen name='Vaccine' component={Vaccine} />
         <Screen name='OpenVideo' component={OpenVideo} />
         <Screen name='OpenTip' component={OpenTip} />
       </Navigator>

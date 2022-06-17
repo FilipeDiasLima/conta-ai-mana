@@ -31,7 +31,7 @@ export default function Tips() {
   return (
     <Container onLayout={onLayout}>
       <Header>
-        <TitlePage>ISTs:</TitlePage>
+        <TitlePage>Recomendações:</TitlePage>
       </Header>
       <NormalText>Escolha o tema desejado:</NormalText>
       <ItemList

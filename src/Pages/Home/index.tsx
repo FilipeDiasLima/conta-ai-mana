@@ -43,6 +43,7 @@ export default function Home() {
             image={4}
             title='Vacinas'
             description='Veja seu calendário vacinal completo'
+            onPress={() => navigate('Vaccine' as never)}
           />
         </Menu>
         <NormalText>Outras Categorias</NormalText>

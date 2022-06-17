@@ -6,6 +6,7 @@ export const Container = styled.View`
   flex: 1;
   align-items: center;
   background-color: #FFDCED;
+  width: 100%;
   padding-bottom: ${RFPercentage(1.2)}px;
 `
 
@@ -34,10 +35,3 @@ export const NormalText = styled.Text`
   padding-left: 8%;
   align-self: flex-start;
 `
-
-export const ItemList = styled(FlatList).attrs({
-  showsVerticalScrollIndicator: false
-})`
-  width: 100%;
-  padding: 5% 8%;
-`;
