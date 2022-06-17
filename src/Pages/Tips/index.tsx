@@ -6,7 +6,6 @@ import ListButton from '../../components/ListButton'
 import { ScreenNameNavigation } from '../../types/navigation';
 import { Container, Header, TitlePage, NormalText, ItemList } from './styles'
 import { TipsData } from '../../utils/tips'
-import lamp from '../../assets/lamp.png'
 import { ComponentsContext } from '../../context/ComponentsContext';
 
 interface DataTipsProps {
@@ -42,7 +41,7 @@ export default function Tips() {
             key={data.item.id}
             title={data.item.title}
             type={data.item.id}
-            image={lamp}
+            image={'lamp'}
             onPress={() => handleChooseTip(data.item.id)}
           />
         )}

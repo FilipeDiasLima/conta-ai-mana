@@ -1,22 +1,24 @@
 import React, { useContext, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+
 import ListButton from '../../components/ListButton'
 import { ScreenNameNavigation } from '../../types/navigation';
-import { Container, Header, TitlePage, NormalText, ItemList } from './styles'
-import { ISTSData } from '../../utils/ists'
-import lamp from '../../assets/lamp.png'
+import ISTSData from '../../utils/ists.json'
 import { ComponentsContext } from '../../context/ComponentsContext';
+
+import { Container, Header, TitlePage, NormalText, ItemList } from './styles'
 
 interface DataISTSProps {
   item: ItemProps
 }
 
 interface ItemProps {
-  id: number,
-  title: string,
-  image: string,
-  uri: string,
+  num: number
+  nome: string
+  descricao?: string
+  icone: string
+  video: string
 }
 
 export default function ISTS() {
@@ -26,7 +28,7 @@ export default function ISTS() {
   function handleChooseVideo(type: number) {
     navigate('OpenVideo' as never, { type } as never);
   }
-
+  console.log(ISTSData)
   return (
     <Container onLayout={onLayout}>
       <Header>
@@ -38,11 +40,10 @@ export default function ISTS() {
         keyExtractor={item => item.id}
         renderItem={(data: DataISTSProps) => (
           <ListButton
-            key={data.item.id}
-            title={data.item.title}
-            type={data.item.id}
-            image={lamp}
-            onPress={() => handleChooseVideo(data.item.id)}
+            key={data.item.num}
+            title={data.item.nome}
+            image={data.item.icone}
+            onPress={() => handleChooseVideo(data.item.num)}
           />
         )}
       />

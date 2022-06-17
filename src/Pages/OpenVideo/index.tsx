@@ -3,7 +3,7 @@ import { Platform, TouchableOpacity } from "react-native";
 import { AntDesign } from '@expo/vector-icons';
 import { useNavigation, useRoute } from '@react-navigation/native'
 import { WebView } from 'react-native-webview';
-import { ISTSData } from '../../utils/ists'
+import ISTSData from '../../utils/ists.json'
 
 import { Container, Header, TitlePage, Player } from "./styles";
 import { ComponentsContext } from "../../context/ComponentsContext";
@@ -21,9 +21,9 @@ export default function OpenVideo() {
   }
 
   useEffect(() => {
-    const item = ISTSData.find(item => item.id === route.params?.type)
-    setTitle(item?.title || '')
-    setUri(item?.uri || '')
+    const item = ISTSData.find(item => item.num === route.params?.type)
+    setTitle(item?.nome || '')
+    setUri(item?.video || '')
   }, [])
 
 
