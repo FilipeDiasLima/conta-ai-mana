@@ -1,17 +1,18 @@
+import { View } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
-// import { useFonts, Questrial_400Regular } from '@expo-google-fonts/questrial'
+import Constants from 'expo-constants'
 
 import AppStack from './src/routes'
+import { ComponentsProvider } from './src/context/ComponentsContext'
 
 export default function App() {
-  // const [fontsLoaded] = useFonts({
-  //   Questrial_400Regular
-  // });
+
 
   return (
-    <>
+    <ComponentsProvider>
+      <View style={{ width: '100%', backgroundColor: '#FF4EA2', height: Constants.statusBarHeight + 20 }}></View>
       <AppStack />
       <StatusBar style="light" />
-    </>
+    </ComponentsProvider>
   );
 }
