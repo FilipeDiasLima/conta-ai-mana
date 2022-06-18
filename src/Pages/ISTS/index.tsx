@@ -28,10 +28,22 @@ export default function ISTS() {
   function handleChooseVideo(type: number) {
     navigate('OpenVideo' as never, { type } as never);
   }
-  console.log(ISTSData)
+
   return (
     <Container onLayout={onLayout}>
-      <Header>
+      <Header
+        style={{
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 3,
+          },
+          shadowOpacity: 0.27,
+          shadowRadius: 4.65,
+
+          elevation: 6,
+        }}
+      >
         <TitlePage>ISTs:</TitlePage>
       </Header>
       <NormalText>Escolha o tema desejado:</NormalText>

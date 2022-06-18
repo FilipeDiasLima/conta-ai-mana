@@ -1,12 +1,9 @@
 import styled from 'styled-components/native';
-import { ScrollView } from 'react-native'
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
 
 export const Container = styled.View`
   flex: 1;
   align-items: center;
-  background-color: #FFDCED;
-  width: 100%;
   padding-bottom: ${RFPercentage(1.2)}px;
 `
 
@@ -27,18 +24,24 @@ export const TitlePage = styled.Text`
   font-family: Poppins_700Bold;
 `
 
-export const NormalText = styled.Text`
+export const ResultText = styled.Text`
   color: #717171;
   font-size: ${RFValue(14)}px;
   font-family: Poppins_400Regular;
-  padding-top: ${RFPercentage(3)}px;
-  padding-left: 8%;
+`
+
+export const NormalText = styled.Text`
+  color: #222;
+  font-size: ${RFValue(14)}px;
+  font-family: Poppins_400Regular;
   align-self: flex-start;
 `
 
-export const ItemList = styled(ScrollView).attrs({
-  showsVerticalScrollIndicator: false
-})`
+export const Content = styled.View`
   width: 100%;
-  padding: 5% 8%;
-`;
+  padding: 2% 8%;
+`
+
+export const ImageContent = styled.Image`
+  margin-top: 8%;
+`

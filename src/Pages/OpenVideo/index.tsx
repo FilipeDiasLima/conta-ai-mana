@@ -29,7 +29,19 @@ export default function OpenVideo() {
 
   return (
     <Container onLayout={onLayout}>
-      <Header>
+      <Header
+        style={{
+          shadowColor: "#000",
+          shadowOffset: {
+            width: 0,
+            height: 3,
+          },
+          shadowOpacity: 0.27,
+          shadowRadius: 4.65,
+
+          elevation: 6,
+        }}
+      >
         <TouchableOpacity onPress={handleGoBack}><AntDesign name="left" size={16} color="white" /></TouchableOpacity>
         <TitlePage>{title}</TitlePage>
         <AntDesign name="left" size={24} color="transparent" />

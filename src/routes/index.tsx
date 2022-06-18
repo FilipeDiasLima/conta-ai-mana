@@ -8,6 +8,9 @@ import OpenVideo from '../Pages/OpenVideo';
 import Tips from '../Pages/Tips';
 import OpenTip from '../Pages/OpenTip';
 import Vaccine from '../Pages/Vaccine';
+import OpenVaccine from '../Pages/OpenVaccine';
+import IMC from '../Pages/IMC';
+import Puberty from '../Pages/Puberty';
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
@@ -21,6 +24,9 @@ export default function AppStack() {
         <Screen name='Vaccine' component={Vaccine} />
         <Screen name='OpenVideo' component={OpenVideo} />
         <Screen name='OpenTip' component={OpenTip} />
+        <Screen name='OpenVaccine' component={OpenVaccine} />
+        <Screen name='IMC' component={IMC} />
+        <Screen name='Puberty' component={Puberty} />
       </Navigator>
     </NavigationContainer>
   )

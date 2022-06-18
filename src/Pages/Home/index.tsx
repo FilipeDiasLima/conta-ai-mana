@@ -1,5 +1,6 @@
-import { useNavigation } from '@react-navigation/native'
 import { useContext } from 'react'
+import React, { BackHandler } from 'react-native';
+import { useNavigation } from '@react-navigation/native'
 import MenuButton from '../../components/MenuButton'
 import MenuMiniButton from '../../components/MenuMiniButton'
 import { ComponentsContext } from '../../context/ComponentsContext'
@@ -48,12 +49,33 @@ export default function Home() {
         </Menu>
         <NormalText>Outras Categorias</NormalText>
         <Menu>
-          <MenuMiniButton title='Verificar IMC' type={1} />
-          <MenuMiniButton title='Puberdade' type={1} />
-          <MenuMiniButton title='Perguntas' type={2} />
-          <MenuMiniButton title='Contatos' type={3} />
-          <MenuMiniButton title='Spotify' type={4} />
-          <MenuMiniButton title='Sair' type={5} />
+          <MenuMiniButton
+            title='Verificar IMC'
+            type={1}
+            onPress={() => navigate('IMC' as never)}
+          />
+          <MenuMiniButton
+            title='Puberdade'
+            type={1}
+            onPress={() => navigate('Puberty' as never)}
+          />
+          <MenuMiniButton
+            title='Perguntas'
+            type={2}
+          />
+          <MenuMiniButton
+            title='Contatos'
+            type={3}
+          />
+          <MenuMiniButton
+            title='Spotify'
+            type={4}
+          />
+          <MenuMiniButton
+            title='Sair'
+            type={5}
+            onPress={() => BackHandler.exitApp()}
+          />
         </Menu>
       </Container>
     </ScrollView>
