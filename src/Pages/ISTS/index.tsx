@@ -49,7 +49,7 @@ export default function ISTS() {
       <NormalText>Escolha o tema desejado:</NormalText>
       <ItemList
         data={ISTSData}
-        keyExtractor={item => item.id}
+        keyExtractor={(item: any) => item.num}
         renderItem={(data: DataISTSProps) => (
           <ListButton
             key={data.item.num}

@@ -1,15 +1,20 @@
-import { useContext } from 'react'
+import { useContext, useState } from 'react'
 import React, { BackHandler } from 'react-native';
 import { useNavigation } from '@react-navigation/native'
 import MenuButton from '../../components/MenuButton'
 import MenuMiniButton from '../../components/MenuMiniButton'
 import { ComponentsContext } from '../../context/ComponentsContext'
 import { Container, Title, SubTitle, Header, Menu, ScrollView, NormalText } from './styles'
+import * as WebBrowser from 'expo-web-browser';
 
 export default function Home() {
   const { onLayout } = useContext(ComponentsContext)
 
   const { navigate } = useNavigation();
+
+  async function handleOpenSpotify() {
+    await WebBrowser.openBrowserAsync('https://open.spotify.com/playlist/5EKsvsA04TBY0GO4qWI9DC');
+  }
 
   return (
     <ScrollView showsVerticalScrollIndicator={false}>
@@ -62,14 +67,17 @@ export default function Home() {
           <MenuMiniButton
             title='Perguntas'
             type={2}
+            onPress={() => navigate('Asks' as never)}
           />
           <MenuMiniButton
             title='Contatos'
             type={3}
+            onPress={() => navigate('Map' as never)}
           />
           <MenuMiniButton
             title='Spotify'
             type={4}
+            onPress={handleOpenSpotify}
           />
           <MenuMiniButton
             title='Sair'

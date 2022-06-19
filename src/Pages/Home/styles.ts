@@ -11,7 +11,7 @@ export const Container = styled.View`
   flex: 1;
   justify-content: center;
   align-items: center;
-  padding: ${RFPercentage(5)}px ${RFPercentage(1.7)}px;
+  padding: ${RFPercentage(4)}px ${RFPercentage(1.7)}px;
 `
 
 export const Header = styled.View`
@@ -30,7 +30,7 @@ export const SubTitle = styled.Text`
   color: #878686;
   font-size: ${RFValue(16)}px;
   font-family: Poppins_300Light;
-  padding-top: ${RFPercentage(3)}px;
+  padding-top: ${RFPercentage(2)}px;
 `
 
 export const NormalText = styled.Text`

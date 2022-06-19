@@ -7,7 +7,6 @@ import { ComponentsProvider } from './src/context/ComponentsContext'
 
 export default function App() {
 
-
   return (
     <ComponentsProvider>
       <View style={{ width: '100%', backgroundColor: '#FF4EA2', height: Constants.statusBarHeight + 20 }}></View>
