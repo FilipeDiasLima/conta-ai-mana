@@ -36,6 +36,7 @@ export default function Home() {
             image={2}
             title='Meu Ciclo'
             description='Veja aqui o calendário do seu ciclo periódico menstrual'
+            onPress={() => navigate('Calendar' as never)}
           />
           <MenuButton
             backgroundColor='#D4CD13'

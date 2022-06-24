@@ -33,7 +33,7 @@ export default function Welcome() {
           Seja bem-vinda! Entre agora no nosso app para ter acesso a diversas informações
           importantes sobre saúde para adolescentes.
         </NormalText>
-        <GestureHandlerRootView>
+        <GestureHandlerRootView style={{ alignSelf: 'flex-end' }}>
           <Button onPress={() => navigate('Login' as never)}>
             <ButtonText>
               Entrar no app

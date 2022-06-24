@@ -17,6 +17,7 @@ import Login from '../Pages/Login';
 import Asks from '../Pages/Asks';
 import Map from '../Pages/Map';
 import OpenContact from '../Pages/OpenContact';
+import Calendar from '../Pages/Calendar';
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
@@ -48,14 +49,15 @@ export default function AppStack() {
         <Screen name='ISTS' component={ISTS} />
         <Screen name='Tips' component={Tips} />
         <Screen name='Vaccine' component={Vaccine} />
-        <Screen name='OpenVideo' component={OpenVideo} />
-        <Screen name='OpenTip' component={OpenTip} />
-        <Screen name='OpenVaccine' component={OpenVaccine} />
         <Screen name='IMC' component={IMC} />
         <Screen name='Puberty' component={Puberty} />
         <Screen name='Asks' component={Asks} />
         <Screen name='Map' component={Map} />
+        <Screen name='OpenVideo' component={OpenVideo} />
+        <Screen name='OpenTip' component={OpenTip} />
+        <Screen name='OpenVaccine' component={OpenVaccine} />
         <Screen name='OpenContact' component={OpenContact} />
+        <Screen name='Calendar' component={Calendar} />
       </Navigator>
     </NavigationContainer>
   )
