@@ -1,6 +1,11 @@
 import styled from 'styled-components/native';
 import { RFPercentage, RFValue } from 'react-native-responsive-fontsize'
 
+interface ColorBackgroundProps {
+  color: string
+}
+
+
 export const ScrollView = styled.ScrollView`
   flex: 1;
   width: 100%;
@@ -54,4 +59,26 @@ export const Content = styled.View`
   justify-content: center;
   padding: ${RFPercentage(3)}px;
   width: 100%;
+`
+
+export const Subtitles = styled.View`
+  width: 100%;
+  flex-direction: column;
+  align-items:  flex-start;
+  justify-content: center;
+  padding: ${RFPercentage(3)}px; 
+`
+
+export const Item = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+`
+
+export const Color = styled.View<ColorBackgroundProps>`
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 5px;
+  background: ${props => props.color};
 `
