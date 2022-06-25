@@ -24,53 +24,86 @@ export default function CalendarMestrual() {
 
   async function handleMestrualPeriod(date: DateData) {
     const startingDay = date.dateString
+    const isThereKey = await getKeys(startingDay)
+    if (!isThereKey) {
+      const dateSplit = startingDay.split('-').join('/')
+      const today = new Date(dateSplit);
+      const tomorrow = new Date(today);
 
-    const dateSplit = startingDay.split('-').join('/')
-    const today = new Date(dateSplit);
-    const tomorrow = new Date();
+      tomorrow.setDate(today.getDate() + 1);
+      const secondDay = moment(tomorrow).format('YYYY-MM-DD')
 
-    tomorrow.setDate(today.getDate() + 1);
-    const secondDay = moment(tomorrow).format('YYYY-MM-DD')
+      tomorrow.setDate(today.getDate() + 2);
+      const thirdDay = moment(tomorrow).format('YYYY-MM-DD')
 
-    tomorrow.setDate(today.getDate() + 2);
-    const thirdDay = moment(tomorrow).format('YYYY-MM-DD')
-
-    tomorrow.setDate(today.getDate() + 3);
-    const endingDay = moment(tomorrow).format('YYYY-MM-DD')
+      tomorrow.setDate(today.getDate() + 3);
+      const endingDay = moment(tomorrow).format('YYYY-MM-DD')
 
 
-    const period = {
-      [startingDay]: { startingDay: true, color: '#EC1432' },
-      [secondDay]: { disable: true, selected: true, color: '#FA5A4F' },
-      [thirdDay]: { disable: true, selected: true, color: '#FA5A4F' },
-      [endingDay]: { endingDay: true, color: '#FA5A4F' }
-    }
+      const newPeriod = {
+        [startingDay]: { startingDay: true, color: '#EC1432' },
+        [secondDay]: { disabled: true, disableTouchEvent: true, selected: true, color: '#FA5A4F' },
+        [thirdDay]: { disabled: true, disableTouchEvent: true, selected: true, color: '#FA5A4F' },
+        [endingDay]: { disabled: true, disableTouchEvent: true, endingDay: true, color: '#FA5A4F' }
+      }
 
-    try {
-      const dates = await AsyncStorage.getItem(dataKeyDate)
-      console.log('1- ', dates)
-      if (dates) await AsyncStorage.setItem(dataKeyDate, JSON.stringify(JSON.parse(dates!) + ', ' + startingDay))
-      else await AsyncStorage.setItem(dataKeyDate, JSON.stringify(startingDay))
+      try {
+        const dates = await AsyncStorage.getItem(dataKeyDate)
+        if (dates) await AsyncStorage.setItem(dataKeyDate, JSON.stringify(JSON.parse(dates!) + ', ' + startingDay))
+        else await AsyncStorage.setItem(dataKeyDate, JSON.stringify(startingDay))
 
-      await AsyncStorage.setItem(dataKeyCalendar + `${startingDay}`, JSON.stringify(period))
-      const data = await AsyncStorage.getItem(dataKeyCalendar + `${startingDay}`)
-      setPeriod(JSON.parse(data!))
-    } catch (err) {
-      console.log(err)
-      Alert.alert('Não foi possível salvar as informações')
+        await AsyncStorage.setItem(dataKeyCalendar + `${startingDay}`, JSON.stringify(newPeriod))
+        const data = await AsyncStorage.getItem(dataKeyCalendar + `${startingDay}`)
+        setPeriod({ ...period, ...JSON.parse(data!) })
+      } catch (err) {
+        console.log(err)
+        Alert.alert('Não foi possível salvar as informações')
+      }
+    } else {
+      loadData()
     }
   }
 
   async function loadData() {
     const dates = await AsyncStorage.getItem(dataKeyDate)
+    let aux = {}
     if (dates) {
       const datesArr = JSON.parse(dates).split(', ')
       datesArr.map(async (date: string) => {
         const data = await AsyncStorage.getItem(dataKeyCalendar + date)
-        const allData = Object.assign(JSON.parse(data!), period)
-        setPeriod(allData)
+        aux = { ...aux, ...JSON.parse(data!) }
+        setPeriod(aux)
       })
     }
+    setPeriod(aux)
+  }
+
+  async function getKeys(dateParam: string) {
+    const dates = await AsyncStorage.getItem(dataKeyDate)
+    if (dates) {
+      const datesArr = JSON.parse(dates).split(', ')
+      const findDate = datesArr.find((date: string) => date === dateParam)
+      if (findDate) {
+        try {
+          const id = datesArr.indexOf(findDate)
+          if (id !== -1) {
+            datesArr.splice(id, 1)
+            const datesString = datesArr.join(', ')
+            try {
+              await AsyncStorage.setItem(dataKeyDate, JSON.stringify(datesString))
+            } catch (err) {
+              console.log(err)
+            }
+          }
+          await AsyncStorage.removeItem(dataKeyCalendar + findDate)
+        } catch (err) {
+          console.log(err)
+        }
+        return true
+      }
+      return false
+    }
+    return false
   }
 
   useEffect(() => {
@@ -91,6 +124,23 @@ export default function CalendarMestrual() {
             markedDates={period}
           />
           <Subtitles>
+            <Item>
+              <Color
+                color='#EC1432'
+                style={{
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 3,
+                  },
+                  shadowOpacity: 0.27,
+                  shadowRadius: 4.65,
+
+                  elevation: 6,
+                }}
+              />
+              <NormalText>Início da Mestruação</NormalText>
+            </Item>
             <Item>
               <Color
                 color='#FA5A4F'
@@ -158,23 +208,6 @@ export default function CalendarMestrual() {
                 }}
               />
               <NormalText>Ovulação Prevista</NormalText>
-            </Item>
-            <Item>
-              <Color
-                color='#EC1432'
-                style={{
-                  shadowColor: "#000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 3,
-                  },
-                  shadowOpacity: 0.27,
-                  shadowRadius: 4.65,
-
-                  elevation: 6,
-                }}
-              />
-              <NormalText>Início da Mestruação</NormalText>
             </Item>
           </Subtitles>
         </Content>
