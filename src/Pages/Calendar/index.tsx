@@ -5,6 +5,7 @@ import { Alert } from 'react-native';
 import { Calendar, DateData } from 'react-native-calendars';
 import { AntDesign } from '@expo/vector-icons';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { cycleMestrualDays } from '../../utils/cycleMestrual';
 
 import {
   Container,
@@ -31,30 +32,26 @@ export default function CalendarMestrual() {
   const [period, setPeriod] = useState({})
 
   async function handleMestrualPeriod(date: DateData) {
+    const cycleMestrualObj = cycleMestrualDays[mestrualCycle]
     const startingDay = date.dateString
-    const isThereKey = await getKeys(startingDay)
+    const isThereKey = await removeKeys(startingDay)
+    let newPeriod: any = {}
     if (!isThereKey) {
       const dateSplit = startingDay.split('-').join('/')
       const today = new Date(dateSplit);
       const tomorrow = new Date(today);
 
-      tomorrow.setDate(today.getDate() + 1);
-      const secondDay = moment(tomorrow).format('YYYY-MM-DD')
+      const ovulationDays = calculeFertilePeriod(date)
 
-      tomorrow.setDate(today.getDate() + 2);
-      const thirdDay = moment(tomorrow).format('YYYY-MM-DD')
-
-      tomorrow.setDate(today.getDate() + 3);
-      const endingDay = moment(tomorrow).format('YYYY-MM-DD')
-
-
-      const newPeriod = {
-        [startingDay]: { startingDay: true, color: '#EC1432' },
-        [secondDay]: { disabled: true, disableTouchEvent: true, selected: true, color: '#FA5A4F' },
-        [thirdDay]: { disabled: true, disableTouchEvent: true, selected: true, color: '#FA5A4F' },
-        [endingDay]: { disabled: true, disableTouchEvent: true, endingDay: true, color: '#FA5A4F' }
+      for (let i = 0; i < cycleMestrualObj.amountDays; ++i) {
+        tomorrow.setDate(today.getDate() + i);
+        const aux = moment(tomorrow).format('YYYY-MM-DD')
+        if (i === 0) newPeriod[aux] = { startingDay: true, color: '#EC1432' }
+        else if (i === cycleMestrualObj.amountDays - 1) newPeriod[aux] = { disabled: true, disableTouchEvent: true, endingDay: true, color: '#FA5A4F' }
+        else newPeriod[aux] = { disabled: true, disableTouchEvent: true, selected: true, color: '#FA5A4F' }
       }
 
+      newPeriod = { ...newPeriod, ...ovulationDays }
       try {
         const dates = await AsyncStorage.getItem(dataKeyDate)
         if (dates) await AsyncStorage.setItem(dataKeyDate, JSON.stringify(JSON.parse(dates!) + ', ' + startingDay))
@@ -86,7 +83,7 @@ export default function CalendarMestrual() {
     setPeriod(aux)
   }
 
-  async function getKeys(dateParam: string) {
+  async function removeKeys(dateParam: string) {
     const dates = await AsyncStorage.getItem(dataKeyDate)
     if (dates) {
       const datesArr = JSON.parse(dates).split(', ')
@@ -137,6 +134,47 @@ export default function CalendarMestrual() {
     }
   }
 
+  function calculeFertilePeriod(date: DateData) {
+    const cycleMestrualObj = cycleMestrualDays[mestrualCycle]
+    const dayCalc = cycleMestrualObj.ovulationInterval
+    const startingDay = date.dateString
+    const dateSplit = startingDay.split('-').join('/')
+    const today = new Date(dateSplit);
+    const tomorrow = new Date(today);
+
+    tomorrow.setDate(today.getDate() + (dayCalc - 3));
+    const fertileDay1 = moment(tomorrow).format('YYYY-MM-DD')
+
+    tomorrow.setDate(today.getDate() + (dayCalc - 2));
+    const fertileDay2 = moment(tomorrow).format('YYYY-MM-DD')
+
+    tomorrow.setDate(today.getDate() + (dayCalc - 1));
+    const fertileDay3 = moment(tomorrow).format('YYYY-MM-DD')
+
+    tomorrow.setDate(today.getDate() + dayCalc);
+    const ovulationDay1 = moment(tomorrow).format('YYYY-MM-DD')
+
+    tomorrow.setDate(today.getDate() + (dayCalc + 1));
+    const ovulationDay2 = moment(tomorrow).format('YYYY-MM-DD')
+
+    tomorrow.setDate(today.getDate() + (dayCalc + 2));
+    const fertileDay6 = moment(tomorrow).format('YYYY-MM-DD')
+
+    tomorrow.setDate(today.getDate() + (dayCalc + 3));
+    const fertileDay7 = moment(tomorrow).format('YYYY-MM-DD')
+
+    const newPeriod = {
+      [fertileDay1]: { startingDay: true, color: '#FC90BB', textColor: '#000', disabled: true, disableTouchEvent: true },
+      [fertileDay2]: { selected: true, color: '#FC90BB', textColor: '#000', disabled: true, disableTouchEvent: true },
+      [fertileDay3]: { selected: true, color: '#FC90BB', textColor: '#000', disabled: true, disableTouchEvent: true },
+      [ovulationDay1]: { selected: true, color: '#FC90BB', textColor: '#FFF', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' },
+      [ovulationDay2]: { selected: true, color: '#FC90BB', textColor: '#FFF', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' },
+      [fertileDay6]: { selected: true, color: '#FC90BB', textColor: '#000', disabled: true, disableTouchEvent: true },
+      [fertileDay7]: { endingDay: true, color: '#FC90BB', textColor: '#000', disabled: true, disableTouchEvent: true },
+    }
+    return newPeriod
+  }
+
   useEffect(() => {
     loadData()
     loadDays()
@@ -169,7 +207,10 @@ export default function CalendarMestrual() {
               style={{ width: 330, borderRadius: 20, overflow: 'hidden', padding: 20 }}
               onDayPress={date => handleMestrualPeriod(date)}
               markingType={'period'}
-              markedDates={period}
+              markedDates={{
+                ...period,
+                [String(moment(new Date()).format('YYYY-MM-DD'))]: { textColor: 'blue' }
+              }}
             />
           )}
           <Subtitles>
@@ -226,6 +267,23 @@ export default function CalendarMestrual() {
             </Item>
             <Item>
               <Color
+                color='#f1f1f1'
+                style={{
+                  shadowColor: "#000",
+                  shadowOffset: {
+                    width: 0,
+                    height: 3,
+                  },
+                  shadowOpacity: 0.27,
+                  shadowRadius: 4.65,
+
+                  elevation: 6,
+                }}
+              />
+              <NormalText>Ovulação Prevista</NormalText>
+            </Item>
+            <Item>
+              <Color
                 color='#F7AEAE'
                 style={{
                   shadowColor: "#000",
@@ -240,23 +298,6 @@ export default function CalendarMestrual() {
                 }}
               />
               <NormalText>Próxima Mestruação Prevista</NormalText>
-            </Item>
-            <Item>
-              <Color
-                color='#000'
-                style={{
-                  shadowColor: "#000",
-                  shadowOffset: {
-                    width: 0,
-                    height: 3,
-                  },
-                  shadowOpacity: 0.27,
-                  shadowRadius: 4.65,
-
-                  elevation: 6,
-                }}
-              />
-              <NormalText>Ovulação Prevista</NormalText>
             </Item>
           </Subtitles>
         </Content>
