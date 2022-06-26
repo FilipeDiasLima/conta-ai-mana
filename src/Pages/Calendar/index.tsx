@@ -233,7 +233,7 @@ export default function CalendarMestrual() {
             <Input
               value={mestrualCycle}
               onChangeText={setMestrualCycle}
-              placeholder='Entre 21 e 35 dias'
+              placeholder='Entre 21 e 40 dias'
               mask={[/\d/, /\d/]}
               keyboardType={'numeric'}
             />

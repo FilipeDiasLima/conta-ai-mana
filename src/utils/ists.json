@@ -22,28 +22,21 @@
     },
     {
         "num": "04",
-        "nome": "04. Gonorréia",
-        "descricao": "",
-        "icone": "gonorreiaImage",
-        "video": ""
-    },
-    {
-        "num": "05",
-        "nome": "05. Clamydia",
+        "nome": "04. Clamydia",
         "descricao": "",
         "icone": "clamydiaImage",
         "video": "v2pGpKmz4_o"
     },
     {
-        "num": "06",
-        "nome": "06. Herpes Genital",
+        "num": "05",
+        "nome": "05. Herpes Genital",
         "descricao": "",
         "icone": "herpesImage",
         "video": "SOmLbHkYc04"
     },
     {
-        "num": "07",
-        "nome": "07. HIV",
+        "num": "06",
+        "nome": "06. HIV",
         "descricao": "",
         "icone": "hivImage",
         "video": "fNuHO3lFiQ8"
