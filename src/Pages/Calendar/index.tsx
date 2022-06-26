@@ -3,6 +3,8 @@ import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { Alert } from 'react-native';
 import { Calendar, DateData } from 'react-native-calendars';
+import { AntDesign } from '@expo/vector-icons';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import {
   Container,
@@ -13,13 +15,19 @@ import {
   NormalText,
   Subtitles,
   Item,
-  Color
+  Color,
+  Input,
+  ViewInput,
+  SaveInputButton
 } from "./styles";
 
 export default function CalendarMestrual() {
   const dataKeyCalendar = `@contaaimana:calendar`
   const dataKeyDate = `@contaaimana:date`
+  const mestrualCycleKey = `@contaaimana:mestrualcycle`
 
+  const [mestrualCycle, setMestrualCycle] = useState<string>('')
+  const [isThereCycle, setIsThereCycle] = useState<boolean>(false)
   const [period, setPeriod] = useState({})
 
   async function handleMestrualPeriod(date: DateData) {
@@ -106,8 +114,32 @@ export default function CalendarMestrual() {
     return false
   }
 
+  async function loadDays() {
+    const days = await AsyncStorage.getItem(mestrualCycleKey)
+    if (days) {
+      setMestrualCycle(JSON.parse(days!))
+      setIsThereCycle(true)
+    } else {
+      setIsThereCycle(false)
+    }
+  }
+
+  async function saveMestrualCycle() {
+    if (Number(mestrualCycle) < 21 || Number(mestrualCycle) > 35) {
+      Alert.alert('Coloque um período entre 21 e 35 dias')
+    } else {
+      try {
+        await AsyncStorage.setItem(mestrualCycleKey, JSON.stringify(mestrualCycle))
+        setIsThereCycle(true)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
+
   useEffect(() => {
     loadData()
+    loadDays()
   }, [])
 
   return (
@@ -117,12 +149,29 @@ export default function CalendarMestrual() {
           <TitlePage>Meu Ciclo:</TitlePage>
         </Header>
         <Content>
-          <Calendar
-            style={{ width: 330, borderRadius: 20, overflow: 'hidden', padding: 20 }}
-            onDayPress={date => handleMestrualPeriod(date)}
-            markingType={'period'}
-            markedDates={period}
-          />
+          <NormalText>Média de dias do ciclo mestrual: </NormalText>
+          <ViewInput>
+            <Input
+              value={mestrualCycle}
+              onChangeText={setMestrualCycle}
+              placeholder='Entre 21 e 35 dias'
+              mask={[/\d/, /\d/]}
+              keyboardType={'numeric'}
+            />
+            <GestureHandlerRootView>
+              <SaveInputButton onPress={saveMestrualCycle}>
+                <AntDesign name="arrowright" size={20} color="#FFF" />
+              </SaveInputButton>
+            </GestureHandlerRootView>
+          </ViewInput>
+          {isThereCycle && (
+            <Calendar
+              style={{ width: 330, borderRadius: 20, overflow: 'hidden', padding: 20 }}
+              onDayPress={date => handleMestrualPeriod(date)}
+              markingType={'period'}
+              markedDates={period}
+            />
+          )}
           <Subtitles>
             <Item>
               <Color
