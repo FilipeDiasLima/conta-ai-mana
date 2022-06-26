@@ -39,7 +39,7 @@ export default function CalendarMestrual() {
     if (!isThereKey) {
       const dateSplit = startingDay.split('-').join('/')
       const today = new Date(dateSplit);
-      const tomorrow = new Date(today);
+      let tomorrow = new Date(today);
 
       const ovulationDays = calculeFertilePeriod(date)
 
@@ -49,9 +49,16 @@ export default function CalendarMestrual() {
         if (i === 0) newPeriod[aux] = { startingDay: true, color: '#EC1432' }
         else if (i === cycleMestrualObj.amountDays - 1) newPeriod[aux] = { disabled: true, disableTouchEvent: true, endingDay: true, color: '#FA5A4F' }
         else newPeriod[aux] = { disabled: true, disableTouchEvent: true, selected: true, color: '#FA5A4F' }
+        tomorrow = new Date(today);
       }
 
+      tomorrow = new Date(today);
+      tomorrow.setDate(today.getDate() + Number(mestrualCycle));
+      const nextPeriod = moment(tomorrow).format('YYYY-MM-DD')
+      newPeriod[nextPeriod] = { startingDay: true, endingDay: true, color: '#F7AEAE' }
+
       newPeriod = { ...newPeriod, ...ovulationDays }
+
       try {
         const dates = await AsyncStorage.getItem(dataKeyDate)
         if (dates) await AsyncStorage.setItem(dataKeyDate, JSON.stringify(JSON.parse(dates!) + ', ' + startingDay))
@@ -122,8 +129,8 @@ export default function CalendarMestrual() {
   }
 
   async function saveMestrualCycle() {
-    if (Number(mestrualCycle) < 21 || Number(mestrualCycle) > 35) {
-      Alert.alert('Coloque um período entre 21 e 35 dias')
+    if (Number(mestrualCycle) < 21 || Number(mestrualCycle) > 40) {
+      Alert.alert('Coloque um período entre 21 e 40 dias')
     } else {
       try {
         await AsyncStorage.setItem(mestrualCycleKey, JSON.stringify(mestrualCycle))
@@ -136,42 +143,72 @@ export default function CalendarMestrual() {
 
   function calculeFertilePeriod(date: DateData) {
     const cycleMestrualObj = cycleMestrualDays[mestrualCycle]
-    const dayCalc = cycleMestrualObj.ovulationInterval
+    const dayCalc = Number(cycleMestrualObj.ovulationInterval)
     const startingDay = date.dateString
     const dateSplit = startingDay.split('-').join('/')
-    const today = new Date(dateSplit);
-    const tomorrow = new Date(today);
+    const day = new Date(dateSplit);
+    let nextDay = new Date(day);
+    const today = moment(new Date()).format('YYYY-MM-DD')
+    let textColor1: any = {}
+    let textColor2: any = {}
+    let textColor3: any = {}
+    let textColor4: any = {}
+    let textColor5: any = {}
+    let textColor6: any = {}
+    let textColor7: any = {}
 
-    tomorrow.setDate(today.getDate() + (dayCalc - 3));
-    const fertileDay1 = moment(tomorrow).format('YYYY-MM-DD')
+    nextDay = new Date(day);
+    nextDay.setDate(day.getDate() + (dayCalc - 3));
+    const fertileDay1 = moment(nextDay).format('YYYY-MM-DD')
+    if (today === fertileDay1) textColor1['textColor'] = 'blue'
+    else textColor1['textColor'] = '#000'
 
-    tomorrow.setDate(today.getDate() + (dayCalc - 2));
-    const fertileDay2 = moment(tomorrow).format('YYYY-MM-DD')
+    nextDay = new Date(day);
+    nextDay.setDate(day.getDate() + (dayCalc - 2));
+    const fertileDay2 = moment(nextDay).format('YYYY-MM-DD')
+    if (today === fertileDay2) textColor2['textColor'] = 'blue'
+    else textColor2['textColor'] = '#000'
 
-    tomorrow.setDate(today.getDate() + (dayCalc - 1));
-    const fertileDay3 = moment(tomorrow).format('YYYY-MM-DD')
+    nextDay = new Date(day);
+    nextDay.setDate(day.getDate() + (dayCalc - 1));
+    const fertileDay3 = moment(nextDay).format('YYYY-MM-DD')
+    if (today === fertileDay3) textColor3['textColor'] = 'blue'
+    else textColor3['textColor'] = '#000'
 
-    tomorrow.setDate(today.getDate() + dayCalc);
-    const ovulationDay1 = moment(tomorrow).format('YYYY-MM-DD')
+    nextDay = new Date(day);
+    nextDay.setDate(day.getDate() + dayCalc);
+    const ovulationDay1 = moment(nextDay).format('YYYY-MM-DD')
+    if (today === ovulationDay1) textColor4['textColor'] = 'blue'
+    else textColor4['textColor'] = '#FFF'
 
-    tomorrow.setDate(today.getDate() + (dayCalc + 1));
-    const ovulationDay2 = moment(tomorrow).format('YYYY-MM-DD')
+    nextDay = new Date(day);
+    nextDay.setDate(day.getDate() + (dayCalc + 1));
+    const ovulationDay2 = moment(nextDay).format('YYYY-MM-DD')
+    if (today === ovulationDay2) textColor5['textColor'] = 'blue'
+    else textColor5['textColor'] = '#FFF'
 
-    tomorrow.setDate(today.getDate() + (dayCalc + 2));
-    const fertileDay6 = moment(tomorrow).format('YYYY-MM-DD')
+    nextDay = new Date(day);
+    nextDay.setDate(day.getDate() + (dayCalc + 2));
+    const fertileDay6 = moment(nextDay).format('YYYY-MM-DD')
+    if (today === fertileDay6) textColor6['textColor'] = 'blue'
+    else textColor6['textColor'] = '#000'
 
-    tomorrow.setDate(today.getDate() + (dayCalc + 3));
-    const fertileDay7 = moment(tomorrow).format('YYYY-MM-DD')
+    nextDay = new Date(day);
+    nextDay.setDate(day.getDate() + (dayCalc + 3));
+    const fertileDay7 = moment(nextDay).format('YYYY-MM-DD')
+    if (today === fertileDay7) textColor7['textColor'] = 'blue'
+    else textColor7['textColor'] = '#000'
 
     const newPeriod = {
-      [fertileDay1]: { startingDay: true, color: '#FC90BB', textColor: '#000', disabled: true, disableTouchEvent: true },
-      [fertileDay2]: { selected: true, color: '#FC90BB', textColor: '#000', disabled: true, disableTouchEvent: true },
-      [fertileDay3]: { selected: true, color: '#FC90BB', textColor: '#000', disabled: true, disableTouchEvent: true },
-      [ovulationDay1]: { selected: true, color: '#FC90BB', textColor: '#FFF', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' },
-      [ovulationDay2]: { selected: true, color: '#FC90BB', textColor: '#FFF', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' },
-      [fertileDay6]: { selected: true, color: '#FC90BB', textColor: '#000', disabled: true, disableTouchEvent: true },
-      [fertileDay7]: { endingDay: true, color: '#FC90BB', textColor: '#000', disabled: true, disableTouchEvent: true },
+      [fertileDay1]: { ...textColor1, ...{ startingDay: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
+      [fertileDay2]: { ...textColor2, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
+      [fertileDay3]: { ...textColor3, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
+      [ovulationDay1]: { ...textColor4, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' } },
+      [ovulationDay2]: { ...textColor5, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' } },
+      [fertileDay6]: { ...textColor6, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
+      [fertileDay7]: { ...textColor7, ...{ endingDay: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
     }
+
     return newPeriod
   }
 
@@ -179,6 +216,10 @@ export default function CalendarMestrual() {
     loadData()
     loadDays()
   }, [])
+
+  useEffect(() => {
+    if (Number(mestrualCycle) < 21 || Number(mestrualCycle) > 40) setIsThereCycle(false)
+  }, [mestrualCycle])
 
   return (
     <ScrollView>
@@ -208,8 +249,8 @@ export default function CalendarMestrual() {
               onDayPress={date => handleMestrualPeriod(date)}
               markingType={'period'}
               markedDates={{
-                ...period,
-                [String(moment(new Date()).format('YYYY-MM-DD'))]: { textColor: 'blue' }
+                [String(moment(new Date()).format('YYYY-MM-DD'))]: { textColor: 'blue' },
+                ...period
               }}
             />
           )}
@@ -267,7 +308,7 @@ export default function CalendarMestrual() {
             </Item>
             <Item>
               <Color
-                color='#f1f1f1'
+                color='#FFF'
                 style={{
                   shadowColor: "#000",
                   shadowOffset: {
