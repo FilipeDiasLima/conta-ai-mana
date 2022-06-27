@@ -1,0 +1,107 @@
+[
+  {
+      "num":"01",
+      "nome":"Hidratação Diária",
+      "descricao":"Tome cerca de 2 litros de líquido ao dia. É importante para hidratar o organismo.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F01.png?alt=media&token=1b79ffdf-d426-4700-a69f-aa86ed9b78f3"
+  },
+  {
+      "num":"02",
+      "nome":"Alimentação Básica",
+      "descricao":"Procure comer frutas e verduras todos os dias.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F02.png?alt=media&token=7795f745-0387-4801-b79c-8d3ef0cbc13a"
+  },
+  {
+      "num":"03",
+      "nome":"Alimentação Variada",
+      "descricao":"Uma alimentação variada e balanceada é o segredo para manter o corpo saudável e bonito, viu.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F03.png?alt=media&token=14542be9-5744-4b13-abca-37d03eed3f0f"
+  },
+  {
+      "num":"04",
+      "nome":"Exercícios Físicos",
+      "descricao":"Os exercícios também são importantes pra nossa saúde, pratique com regularidade e dedicação.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F04.png?alt=media&token=b3157f16-7b29-4cd7-8806-c1173049c40b"
+  },
+  {
+      "num":"05",
+      "nome":"Consulta Médica",
+      "descricao":"Essa vale ouro miga: já na adolescência é importante ir ao Ginecologista anualmente, ou sempre que sentir alguma coisa diferente no seu corpo.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F05.png?alt=media&token=06a106c9-6cf4-45f1-93c1-b6a6fb7bcf11"
+  },
+  {
+      "num":"06",
+      "nome":"Mudanças no Organismo",
+      "descricao":"Procure observar as mudanças do seu organismo durante a adolescência,  isso é legal para aprender a se conhecer.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F06.png?alt=media&token=82923121-77e3-44c6-9b24-a6bd15c95e58"
+  },
+  {
+      "num":"07",
+      "nome":"Vacinação",
+      "descricao":"Miga, mantenha sempre suas vacinas em dia.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F07.png?alt=media&token=b40df56b-4da0-4ed5-b54a-efd80c1ed9f0"
+  },
+  {
+      "num":"08",
+      "nome":"Sono",
+      "descricao":"Tenho uma boa noite de sono para vc recarregar suas energias e está top no dia seguinte",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F08.png?alt=media&token=95bcdd21-6766-4af5-b814-26f5945c5cd2"
+  },
+  {
+      "num":"09",
+      "nome":"Diálogo",
+      "descricao":"Outra dica miga: sorria sempre, converse sempre e não guarde pra vc os problemas, sabia que isso pode lhe ajudar a não ter ansiedade.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F09.png?alt=media&token=bebd4544-8934-4d0d-a698-c890a3ff3ab9"
+  },
+  {
+      "num":"10",
+      "nome":"Higiene Diária",
+      "descricao":"Essa acho que vc não sabia miga, se vc mora em um lugar quente vc deve fazer sua higiene diária de uma a três vezes ao dia e no clima frio pelo menos uma vez ao dia.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F10.png?alt=media&token=d71c1862-3439-451b-8219-dcbd07c8fd10"
+  },
+  {
+      "num":"11",
+      "nome":"Higiene",
+      "descricao":"Falando em higiene, olha outra diga boa: você deve depois de fazer asseio secar cuidadosamente as áreas lavadas com toalha de algodão secas e limpas. Sabia também que o tempo da higiene genital não pode ser por mais de 2-3 minutos. Gostou dessa dica miga?",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F11.png?alt=media&token=9f950837-b748-4bf8-82fa-40e972fb8b2c"
+  },
+  {
+      "num":"12",
+      "nome":"Depilação Íntima",
+      "descricao":"Miga essa dica é boa: vc pode depilar a sua parte íntima mas a frequência deve ser a menor possível e a extensão da depilação depende do seu gosto. Ah e não esquece, depois de depilar usa substâncias calmantes tipo água obrigada e soluções de camomila.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F12.png?alt=media&token=9ae337b8-98b3-4091-86d3-0b0712f94e73"
+  },
+  {
+      "num":"13",
+      "nome":"Absorvente Externo",
+      "descricao":"Troque o absorvente externo em no máximo 4 horas.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F13.png?alt=media&token=c2240ed4-ae93-43c7-b53a-5e1e054395ab"
+  },
+  {
+      "num":"14",
+      "nome":"Sono",
+      "descricao":"Vou te dar outra dica legal miga: sempre que possível durma sem calcinha ou com roupas largas para aumentar a ventilação de suas partes íntimas.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F14.png?alt=media&token=4e9da406-7ca0-4d63-aee2-bed63d3608d8"
+  },
+  {
+      "num":"15",
+      "nome":"Atividade Física",
+      "descricao":"Depois de fazer atividade física miga não esquece de fazer higiene, pois isso vai evitar que o suor irrite esta área.",
+      "icone":"https://icons.iconarchive.com/icons/vexels/office/1024/bulb-icon.png",
+      "image": "https://firebasestorage.googleapis.com/v0/b/sw-perfi.appspot.com/o/Sigrid%2F15.png?alt=media&token=394ff074-29ef-468d-ac7c-ba1329924a55"
+  }
+]

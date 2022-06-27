@@ -36,3 +36,8 @@ export const NormalText = styled.Text`
   font-family: Poppins_400Regular;
   padding-top: ${RFPercentage(3)}px;
 `
+
+export const ImageTip = styled.Image`
+  width: ${RFValue(150)}px;
+  height: ${RFValue(150)}px;
+`

@@ -5,7 +5,7 @@ import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import ListButton from '../../components/ListButton'
 import { ScreenNameNavigation } from '../../types/navigation';
 import { Container, Header, TitlePage, NormalText, ItemList } from './styles'
-import { TipsData } from '../../utils/tips'
+import TipsData from '../../utils/tips.json'
 import { ComponentsContext } from '../../context/ComponentsContext';
 
 interface DataTipsProps {
@@ -13,9 +13,9 @@ interface DataTipsProps {
 }
 
 interface ItemProps {
-  id: number,
-  title: string,
-  description: string,
+  num: number,
+  nome: string,
+  descricao: string,
   image: string,
 }
 
@@ -47,14 +47,13 @@ export default function Tips() {
       <NormalText>Escolha o tema desejado:</NormalText>
       <ItemList
         data={TipsData}
-        keyExtractor={item => item.id}
+        keyExtractor={(item: any) => item.num}
         renderItem={(data: DataTipsProps) => (
           <ListButton
-            key={data.item.id}
-            title={data.item.title}
-            type={data.item.id}
+            key={data.item.num}
+            title={data.item.nome}
             image={'lamp'}
-            onPress={() => handleChooseTip(data.item.id)}
+            onPress={() => handleChooseTip(data.item.num)}
           />
         )}
       />

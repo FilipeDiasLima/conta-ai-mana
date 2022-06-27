@@ -139,6 +139,7 @@ export default function OpenVaccine() {
               onFocus={handleSelectInput}
               mask={Masks.DATE_DDMMYYYY}
               placeholder='Data de Aplicação'
+              keyboardType={'numeric'}
             />
             <LineInput selected={inputSelected} />
           </DoseCard>
@@ -153,6 +154,7 @@ export default function OpenVaccine() {
                 onFocus={handleSelectInput}
                 mask={Masks.DATE_DDMMYYYY}
                 placeholder='Data de Aplicação'
+                keyboardType={'numeric'}
               />
               <LineInput selected={inputSelected} />
             </DoseCard>
@@ -168,6 +170,7 @@ export default function OpenVaccine() {
                 onFocus={handleSelectInput}
                 mask={Masks.DATE_DDMMYYYY}
                 placeholder='Data de Aplicação'
+                keyboardType={'numeric'}
               />
               <LineInput selected={inputSelected} />
             </DoseCard>
