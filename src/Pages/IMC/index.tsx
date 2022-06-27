@@ -1,7 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { ComponentsContext } from '../../context/ComponentsContext';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
+import { ScrollView } from 'react-native';
 
 import {
   Container,
@@ -17,8 +19,6 @@ import {
   ResultText
 } from './styles'
 
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { ScrollView } from 'react-native';
 
 export default function IMC() {
   const { onLayout } = useContext(ComponentsContext)
@@ -43,6 +43,10 @@ export default function IMC() {
       setResultMessage("Obesidade II")
     }
   }
+
+  useEffect(() => {
+    verificarIMC()
+  }, [imc])
 
   function handleIMC() {
     const res = Number(height.split('.').join('')) / 100;
