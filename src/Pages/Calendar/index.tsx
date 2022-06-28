@@ -228,12 +228,12 @@ export default function CalendarMestrual() {
           <TitlePage>Meu Ciclo:</TitlePage>
         </Header>
         <Content>
-          <NormalText>Média de dias do ciclo mestrual: </NormalText>
+          <NormalText>Quantos dias (em média) dura o seu ciclo menstrual: </NormalText>
           <ViewInput>
             <Input
               value={mestrualCycle}
               onChangeText={setMestrualCycle}
-              placeholder='Entre 21 e 40 dias'
+              placeholder='Média de dias'
               mask={[/\d/, /\d/]}
               keyboardType={'numeric'}
             />
