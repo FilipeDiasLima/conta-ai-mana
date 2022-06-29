@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { ScrollView } from 'react-native';
 import { ComponentsContext } from '../../context/ComponentsContext';
+import * as WebBrowser from 'expo-web-browser';
 
 import img1 from '../../assets/cad05.png'
 import img2 from '../../assets/cad06.png'
@@ -15,6 +16,10 @@ import {
 
 export default function Puberty() {
   const { onLayout } = useContext(ComponentsContext)
+
+  async function handleOpenLink() {
+    await WebBrowser.openBrowserAsync('https://sogirgs.org.br/sessao/protocolos-febrasgo/');
+  }
 
   return (
     <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, backgroundColor: '#FFDCED' }}>
@@ -65,6 +70,12 @@ export default function Puberty() {
           <NormalText style={{ paddingTop: '4%' }}>
             A seguir, vamos te mostrar os estágios de desenvolvimento do corpo feminino durante a puberdade.
             Tente identificar em que estágio você está.
+          </NormalText>
+          <NormalText style={{ paddingTop: '4%' }}>
+            Disponível em: Protocolo Febrasgo (2020) - 
+            <NormalText style={{color: '#2dabff' }} onPress={handleOpenLink}>
+              https://sogirgs.org.br/sessao/protocolos-febrasgo/
+            </NormalText>
           </NormalText>
         </Content>
         <ImageContent source={img1} />
