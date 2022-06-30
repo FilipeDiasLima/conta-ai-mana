@@ -7,6 +7,7 @@ import { ScreenNameNavigation } from '../../types/navigation';
 import { Container, Header, TitlePage, NormalText, ItemList } from './styles'
 import TipsData from '../../utils/tips.json'
 import { ComponentsContext } from '../../context/ComponentsContext';
+import * as WebBrowser from 'expo-web-browser';
 
 interface DataTipsProps {
   item: ItemProps
@@ -25,6 +26,10 @@ export default function Tips() {
 
   function handleChooseTip(type: number) {
     navigate('OpenTip' as never, { type } as never);
+  }
+
+  async function handleOpenLink() {
+    await WebBrowser.openBrowserAsync('https://sogirgs.org.br/sessao/protocolos-febrasgo/');
   }
 
   return (
@@ -57,6 +62,12 @@ export default function Tips() {
           />
         )}
       />
+      <NormalText style={{ paddingTop: '4%' }}>
+        Disponível em: Protocolo Febrasgo (2020) -
+        <NormalText style={{ color: '#2dabff' }} onPress={handleOpenLink}>
+          https://sogirgs.org.br/sessao/protocolos-febrasgo/
+        </NormalText>
+      </NormalText>
     </Container>
   )
 }

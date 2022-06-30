@@ -72,8 +72,8 @@ export default function Puberty() {
             Tente identificar em que estágio você está.
           </NormalText>
           <NormalText style={{ paddingTop: '4%' }}>
-            Disponível em: Protocolo Febrasgo (2020) - 
-            <NormalText style={{color: '#2dabff' }} onPress={handleOpenLink}>
+            Disponível em: Protocolo Febrasgo (2020) -
+            <NormalText style={{ color: '#2dabff' }} onPress={handleOpenLink}>
               https://sogirgs.org.br/sessao/protocolos-febrasgo/
             </NormalText>
           </NormalText>

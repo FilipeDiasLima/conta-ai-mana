@@ -19,7 +19,8 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.contaimana"
+      "bundleIdentifier": "com.contaimana",
+      "buildNumber": "125"
     },
     "android": {
       "adaptiveIcon": {
