@@ -1,15 +1,31 @@
 import React from "react";
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
+import { AntDesign } from '@expo/vector-icons';
 
 import { Container, Header, ScrollView, TitlePage, BoldText, NormalText, Content, CardContact } from "./styles";
 
 export default function OpenContact() {
+  const { goBack } = useNavigation();
+
+  function handleGoBack() {
+    goBack()
+    goBack()
+  }
+
   return (
     <ScrollView>
       <Container>
         <Header>
-          <TitlePage>Contatos - Manaus:</TitlePage>
+          <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="#FF429C" />
+          </TouchableOpacity>
+          <TitlePage>Contatos - Manaus</TitlePage>
+          <TouchableOpacity disabled style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="transparent" />
+          </TouchableOpacity>
         </Header>
         <Content>
           <BoldText>Aqui você pode encontrar contato de especialistas na sua cidade, caso precise de alguma ajuda:</BoldText>

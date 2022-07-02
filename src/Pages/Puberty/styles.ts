@@ -9,11 +9,12 @@ export const Container = styled.View`
 
 export const Header = styled.View`
   width: 100%;
+  flex-direction: row;
   background: #FFF;
   height: ${RFPercentage(12)}px;
-  padding-left: ${RFPercentage(4)}px;
-  align-items: flex-start;
-  justify-content: center;
+  padding: ${RFPercentage(3)}px;
+  align-items: center;
+  justify-content: space-between;
   border-bottom-left-radius: 25px;
   border-bottom-right-radius: 25px;
 `

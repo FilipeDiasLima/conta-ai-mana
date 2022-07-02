@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { AntDesign } from '@expo/vector-icons';
 
 import ListButton from '../../components/ListButton'
 import { ScreenNameNavigation } from '../../types/navigation';
@@ -8,6 +9,7 @@ import ISTSData from '../../utils/ists.json'
 import { ComponentsContext } from '../../context/ComponentsContext';
 
 import { Container, Header, TitlePage, NormalText, ItemList } from './styles'
+import { TouchableOpacity } from 'react-native';
 
 interface DataISTSProps {
   item: ItemProps
@@ -22,8 +24,12 @@ interface ItemProps {
 }
 
 export default function ISTS() {
-  const { navigate } = useNavigation<NativeStackNavigationProp<ScreenNameNavigation>>();
   const { onLayout } = useContext(ComponentsContext)
+  const { navigate, goBack } = useNavigation<NativeStackNavigationProp<ScreenNameNavigation>>();
+
+  function handleGoBack() {
+    goBack()
+  }
 
   function handleChooseVideo(type: number) {
     navigate('OpenVideo' as never, { type } as never);
@@ -44,7 +50,13 @@ export default function ISTS() {
           elevation: 6,
         }}
       >
-        <TitlePage>ISTs:</TitlePage>
+        <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+          <AntDesign name="left" size={16} color="#FF429C" />
+        </TouchableOpacity>
+        <TitlePage>ISTs</TitlePage>
+        <TouchableOpacity disabled style={{ padding: 10 }}>
+          <AntDesign name="left" size={16} color="transparent" />
+        </TouchableOpacity>
       </Header>
       <NormalText>Escolha o tema desejado:</NormalText>
       <ItemList

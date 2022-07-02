@@ -1,11 +1,12 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
-import { Alert } from 'react-native';
+import { Alert, TouchableOpacity } from 'react-native';
 import { Calendar, DateData } from 'react-native-calendars';
 import { AntDesign } from '@expo/vector-icons';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { cycleMestrualDays } from '../../utils/cycleMestrual';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -23,6 +24,12 @@ import {
 } from "./styles";
 
 export default function CalendarMestrual() {
+  const { goBack } = useNavigation();
+
+  function handleGoBack() {
+    goBack()
+  }
+
   const dataKeyCalendar = `@contaaimana:calendar`
   const dataKeyDate = `@contaaimana:date`
   const mestrualCycleKey = `@contaaimana:mestrualcycle`
@@ -225,7 +232,13 @@ export default function CalendarMestrual() {
     <ScrollView>
       <Container>
         <Header>
-          <TitlePage>Meu Ciclo:</TitlePage>
+          <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="#FF429C" />
+          </TouchableOpacity>
+          <TitlePage>Meu Ciclo</TitlePage>
+          <TouchableOpacity disabled style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="transparent" />
+          </TouchableOpacity>
         </Header>
         <Content>
           <NormalText>Quantos dias (em média) dura o seu ciclo menstrual: </NormalText>

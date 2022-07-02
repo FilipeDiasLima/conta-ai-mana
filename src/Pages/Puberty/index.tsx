@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react'
-import { ScrollView } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
 import { ComponentsContext } from '../../context/ComponentsContext';
 import * as WebBrowser from 'expo-web-browser';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 import img1 from '../../assets/cad05.png'
 import img2 from '../../assets/cad06.png'
@@ -16,6 +18,11 @@ import {
 
 export default function Puberty() {
   const { onLayout } = useContext(ComponentsContext)
+  const { goBack } = useNavigation();
+
+  function handleGoBack() {
+    goBack()
+  }
 
   async function handleOpenLink() {
     await WebBrowser.openBrowserAsync('https://sogirgs.org.br/sessao/protocolos-febrasgo/');
@@ -37,7 +44,13 @@ export default function Puberty() {
             elevation: 6,
           }}
         >
+          <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="#FF429C" />
+          </TouchableOpacity>
           <TitlePage>Estou diferente?</TitlePage>
+          <TouchableOpacity disabled style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="transparent" />
+          </TouchableOpacity>
         </Header>
         <Content>
           <NormalText style={{ paddingTop: '4%' }}>O que acontece na puberdade?</NormalText>

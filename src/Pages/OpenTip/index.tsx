@@ -43,9 +43,13 @@ export default function OpenTip() {
           elevation: 6,
         }}
       >
-        <TouchableOpacity onPress={handleGoBack}><AntDesign name="left" size={16} color="white" /></TouchableOpacity>
+        <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+          <AntDesign name="left" size={16} color="#FFF" />
+        </TouchableOpacity>
         <TitlePage>{title}</TitlePage>
-        <AntDesign name="left" size={24} color="transparent" />
+        <TouchableOpacity disabled style={{ padding: 10 }}>
+          <AntDesign name="left" size={16} color="transparent" />
+        </TouchableOpacity>
       </Header>
       <Description>
         <ImageTip

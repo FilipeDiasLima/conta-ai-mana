@@ -1,18 +1,32 @@
 import React from "react";
 import { Container, Header, ScrollView, TitlePage, BoldText, NormalText, Content } from "./styles";
 import * as WebBrowser from 'expo-web-browser';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
 
 export default function Asks() {
+  const { goBack } = useNavigation();
+
 
   async function handleOpenLink() {
     await WebBrowser.openBrowserAsync('https://sogirgs.org.br/sessao/protocolos-febrasgo/');
   }
 
+  function handleGoBack() {
+    goBack()
+  }
   return (
     <ScrollView>
       <Container>
         <Header>
+          <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="#FF429C" />
+          </TouchableOpacity>
           <TitlePage>Perguntas Frequentes</TitlePage>
+          <TouchableOpacity disabled style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="transparent" />
+          </TouchableOpacity>
         </Header>
         <Content>
           <BoldText>01. Quando a pessoa toma remédio (anticoncepcional) há muito tempo, demora para engravidar?</BoldText>

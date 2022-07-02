@@ -75,11 +75,11 @@ export default function Home() {
             type={3}
             onPress={() => navigate('Map' as never)}
           />
-          {/* <MenuMiniButton
+          <MenuMiniButton
             title='Spotify'
             type={4}
             onPress={handleOpenSpotify}
-          /> */}
+          />
           <MenuMiniButton
             title='Sair'
             type={5}

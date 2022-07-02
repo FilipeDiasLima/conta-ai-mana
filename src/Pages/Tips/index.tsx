@@ -1,6 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { AntDesign } from '@expo/vector-icons';
 
 import ListButton from '../../components/ListButton'
 import { ScreenNameNavigation } from '../../types/navigation';
@@ -8,6 +9,7 @@ import { Container, Header, TitlePage, NormalText, ItemList } from './styles'
 import TipsData from '../../utils/tips.json'
 import { ComponentsContext } from '../../context/ComponentsContext';
 import * as WebBrowser from 'expo-web-browser';
+import { TouchableOpacity } from 'react-native';
 
 interface DataTipsProps {
   item: ItemProps
@@ -22,7 +24,11 @@ interface ItemProps {
 
 export default function Tips() {
   const { onLayout } = useContext(ComponentsContext)
-  const { navigate } = useNavigation<NativeStackNavigationProp<ScreenNameNavigation>>();
+  const { navigate, goBack } = useNavigation<NativeStackNavigationProp<ScreenNameNavigation>>();
+
+  function handleGoBack() {
+    goBack()
+  }
 
   function handleChooseTip(type: number) {
     navigate('OpenTip' as never, { type } as never);
@@ -47,7 +53,13 @@ export default function Tips() {
           elevation: 6,
         }}
       >
-        <TitlePage>Recomendações:</TitlePage>
+        <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+          <AntDesign name="left" size={16} color="#FF429C" />
+        </TouchableOpacity>
+        <TitlePage>Recomendações</TitlePage>
+        <TouchableOpacity disabled style={{ padding: 10 }}>
+          <AntDesign name="left" size={16} color="transparent" />
+        </TouchableOpacity>
       </Header>
       <NormalText>Escolha o tema desejado:</NormalText>
       <ItemList
