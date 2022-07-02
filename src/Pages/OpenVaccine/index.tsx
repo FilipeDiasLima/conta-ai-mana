@@ -1,11 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react'
 import { useNavigation, useRoute } from '@react-navigation/native';
-import { Alert } from 'react-native';
+import { Alert, TouchableOpacity } from 'react-native';
 import { Masks } from 'react-native-mask-input';
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import moment from 'moment';
-
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { ComponentsContext } from '../../context/ComponentsContext';
+import { AntDesign } from '@expo/vector-icons';
 
 import {
   ScrollView,
@@ -22,7 +23,6 @@ import {
   SaveButton,
   ButtonText
 } from './styles'
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 interface DoseProps {
   firstDate: string
@@ -34,6 +34,11 @@ export default function OpenVaccine() {
   moment.locale('pt-BR');
   const route = useRoute()
   const { onLayout } = useContext(ComponentsContext)
+  const { goBack } = useNavigation();
+
+  function handleGoBack() {
+    goBack()
+  }
 
   const titlePage = route.params!.title
   const daysVaccine = route.params!.days
@@ -125,7 +130,13 @@ export default function OpenVaccine() {
             elevation: 6,
           }}
         >
-          <TitlePage>{titlePage}:</TitlePage>
+          <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="#FFF" />
+          </TouchableOpacity>
+          <TitlePage>{titlePage}</TitlePage>
+          <TouchableOpacity disabled style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="transparent" />
+          </TouchableOpacity>
         </Header>
         <NormalText>{message}</NormalText>
         <Content>

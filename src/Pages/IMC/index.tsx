@@ -3,7 +3,9 @@ import { ComponentsContext } from '../../context/ComponentsContext';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { ScrollView } from 'react-native';
+import { ScrollView, TouchableOpacity } from 'react-native';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from '@react-navigation/native';
 
 import {
   Container,
@@ -22,6 +24,11 @@ import {
 
 export default function IMC() {
   const { onLayout } = useContext(ComponentsContext)
+  const { goBack } = useNavigation();
+
+  function handleGoBack() {
+    goBack()
+  }
 
   const [weight, setWeight] = useState<string>('')
   const [height, setHeight] = useState<string>('')
@@ -71,7 +78,13 @@ export default function IMC() {
             elevation: 6,
           }}
         >
-          <TitlePage>Calcular IMC:</TitlePage>
+          <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="#FF429C" />
+          </TouchableOpacity>
+          <TitlePage>Calcular IMC</TitlePage>
+          <TouchableOpacity disabled style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="transparent" />
+          </TouchableOpacity>
         </Header>
         <NormalText>Insira os dados abaixo:</NormalText>
         <Content>

@@ -1,12 +1,32 @@
 import React from "react";
 import { Container, Header, ScrollView, TitlePage, BoldText, NormalText, Content } from "./styles";
+import * as WebBrowser from 'expo-web-browser';
+import { AntDesign } from '@expo/vector-icons';
+import { useNavigation } from "@react-navigation/native";
+import { TouchableOpacity } from "react-native";
 
 export default function Asks() {
+  const { goBack } = useNavigation();
+
+
+  async function handleOpenLink() {
+    await WebBrowser.openBrowserAsync('https://sogirgs.org.br/sessao/protocolos-febrasgo/');
+  }
+
+  function handleGoBack() {
+    goBack()
+  }
   return (
     <ScrollView>
       <Container>
         <Header>
+          <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="#FF429C" />
+          </TouchableOpacity>
           <TitlePage>Perguntas Frequentes</TitlePage>
+          <TouchableOpacity disabled style={{ padding: 10 }}>
+            <AntDesign name="left" size={16} color="transparent" />
+          </TouchableOpacity>
         </Header>
         <Content>
           <BoldText>01. Quando a pessoa toma remédio (anticoncepcional) há muito tempo, demora para engravidar?</BoldText>
@@ -57,6 +77,12 @@ export default function Asks() {
           <BoldText>16. Quando a menina toma pílula há muito tempo, demora para engravidar?</BoldText>
           <NormalText>NÃO. Independentemente do tempo que a mulher tomar pílula, pouco ou muito tempo, ao parar de usar, poderá engravidar no primeiro mês. Dentro de um ano após parar a pílula, 85% das mulheres ficam grávidas, o que é uma taxa normal também para quem nunca tomou remédio.</NormalText>
 
+          <NormalText style={{ paddingTop: '4%' }}>
+            Disponível em: Protocolo Febrasgo (2020) -
+            <NormalText style={{ color: '#2dabff' }} onPress={handleOpenLink}>
+              https://sogirgs.org.br/sessao/protocolos-febrasgo/
+            </NormalText>
+          </NormalText>
         </Content>
       </Container>
     </ScrollView>

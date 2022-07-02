@@ -18,7 +18,9 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.contaimana",
+      "buildNumber": "126"
     },
     "android": {
       "adaptiveIcon": {

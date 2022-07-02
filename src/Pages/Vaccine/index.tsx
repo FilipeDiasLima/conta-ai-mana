@@ -1,18 +1,23 @@
 import React, { useContext, useState } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
-
+import { AntDesign } from '@expo/vector-icons';
 import VaccineButton from '../../components/VaccineButton';
 import { ScreenNameNavigation } from '../../types/navigation';
 import { Container, Header, TitlePage, ItemList, NormalText } from './styles'
 import { ComponentsContext } from '../../context/ComponentsContext';
+import { TouchableOpacity } from 'react-native';
 
 export default function Vaccine() {
   const { onLayout } = useContext(ComponentsContext)
-  const { navigate } = useNavigation<NativeStackNavigationProp<ScreenNameNavigation>>();
+  const { navigate, goBack } = useNavigation<NativeStackNavigationProp<ScreenNameNavigation>>();
 
   function handleChooseVaccine(days: number, title: string, key: string) {
     navigate('OpenVaccine' as never, { days, title, key } as never);
+  }
+
+  function handleGoBack() {
+    goBack()
   }
 
   return (
@@ -30,7 +35,13 @@ export default function Vaccine() {
           elevation: 6,
         }}
       >
-        <TitlePage>Cartão de Vacinação:</TitlePage>
+        <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+          <AntDesign name="left" size={16} color="#FF429C" />
+        </TouchableOpacity>
+        <TitlePage>Cartão de Vacinação</TitlePage>
+        <TouchableOpacity disabled style={{ padding: 10 }}>
+          <AntDesign name="left" size={16} color="transparent" />
+        </TouchableOpacity>
       </Header>
       <NormalText>Escolha o tema desejado:</NormalText>
       <ItemList>

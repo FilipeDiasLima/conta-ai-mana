@@ -42,9 +42,13 @@ export default function OpenVideo() {
           elevation: 6,
         }}
       >
-        <TouchableOpacity onPress={handleGoBack}><AntDesign name="left" size={16} color="white" /></TouchableOpacity>
+        <TouchableOpacity onPress={handleGoBack} style={{ padding: 10 }}>
+          <AntDesign name="left" size={16} color="white" />
+        </TouchableOpacity>
         <TitlePage>{title}</TitlePage>
-        <AntDesign name="left" size={24} color="transparent" />
+        <TouchableOpacity disabled style={{ padding: 10 }}>
+          <AntDesign name="left" size={16} color="transparent" />
+        </TouchableOpacity>
       </Header>
       <Player style={{ flex: 1 }}>
         <WebView
