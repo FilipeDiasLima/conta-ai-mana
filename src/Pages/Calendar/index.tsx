@@ -210,8 +210,8 @@ export default function CalendarMestrual() {
       [fertileDay1]: { ...textColor1, ...{ startingDay: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
       [fertileDay2]: { ...textColor2, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
       [fertileDay3]: { ...textColor3, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
-      [ovulationDay1]: { ...textColor4, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' } },
-      [ovulationDay2]: { ...textColor5, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' } },
+      [ovulationDay1]: { ...textColor4, ...{ selected: true, color: '#cdcdcd', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' } },
+      [ovulationDay2]: { ...textColor5, ...{ selected: true, color: '#cdcdcd', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' } },
       [fertileDay6]: { ...textColor6, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
       [fertileDay7]: { ...textColor7, ...{ endingDay: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
     }
@@ -321,7 +321,7 @@ export default function CalendarMestrual() {
             </Item>
             <Item>
               <Color
-                color='#FFF'
+                color='#cdcdcd'
                 style={{
                   shadowColor: "#000",
                   shadowOffset: {
