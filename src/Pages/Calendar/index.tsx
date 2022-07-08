@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import moment from 'moment';
 import React, { useEffect, useState } from 'react'
 import { Alert, TouchableOpacity } from 'react-native';
-import { Calendar, DateData } from 'react-native-calendars';
+import { Calendar, DateData, LocaleConfig } from 'react-native-calendars';
 import { AntDesign } from '@expo/vector-icons';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import { cycleMestrualDays } from '../../utils/cycleMestrual';
@@ -207,13 +207,13 @@ export default function CalendarMestrual() {
     else textColor7['textColor'] = '#000'
 
     const newPeriod = {
-      [fertileDay1]: { ...textColor1, ...{ startingDay: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
-      [fertileDay2]: { ...textColor2, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
-      [fertileDay3]: { ...textColor3, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
-      [ovulationDay1]: { ...textColor4, ...{ selected: true, color: '#cdcdcd', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' } },
-      [ovulationDay2]: { ...textColor5, ...{ selected: true, color: '#cdcdcd', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' } },
-      [fertileDay6]: { ...textColor6, ...{ selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
-      [fertileDay7]: { ...textColor7, ...{ endingDay: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
+      [fertileDay1]: { ...textColor1, ...{ startingDay: true, endingDay: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
+      [fertileDay2]: { ...textColor2, ...{ startingDay: true, endingDay: true, selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
+      [fertileDay3]: { ...textColor3, ...{ startingDay: true, endingDay: true, selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
+      [ovulationDay1]: { ...textColor4, ...{ startingDay: true, endingDay: true, selected: true, color: '#cdcdcd', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' } },
+      [ovulationDay2]: { ...textColor5, ...{ startingDay: true, endingDay: true, selected: true, color: '#cdcdcd', disabled: true, disableTouchEvent: true, marked: true, dotColor: '#FFF' } },
+      [fertileDay6]: { ...textColor6, ...{ startingDay: true, endingDay: true, selected: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
+      [fertileDay7]: { ...textColor7, ...{ startingDay: true, endingDay: true, color: '#FC90BB', disabled: true, disableTouchEvent: true } },
     }
 
     return newPeriod
@@ -227,6 +227,50 @@ export default function CalendarMestrual() {
   useEffect(() => {
     if (Number(mestrualCycle) < 21 || Number(mestrualCycle) > 40) setIsThereCycle(false)
   }, [mestrualCycle])
+
+  LocaleConfig.locales.en = LocaleConfig.locales[''];
+  LocaleConfig.locales.br = {
+    monthNames: [
+      'Janeiro',
+      'Fevereiro',
+      'Março',
+      'Abril',
+      'Maio',
+      'Junho',
+      'Julho',
+      'Agosto',
+      'Setembro',
+      'Outubro',
+      'Novembro',
+      'Dezembro',
+    ],
+    monthNamesShort: [
+      'Jan',
+      'Fev',
+      'Mar',
+      'Abr',
+      'Maio',
+      'Jun',
+      'Jul',
+      'Ago',
+      'Set',
+      'Out',
+      'Nov',
+      'Dec',
+    ],
+    dayNames: [
+      'Domingo',
+      'Segunda',
+      'Terça',
+      'Quarta',
+      'Quinta',
+      'Sexta',
+      'Sábado',
+    ],
+    dayNamesShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+  };
+
+  LocaleConfig.defaultLocale = 'br';
 
   return (
     <ScrollView>
